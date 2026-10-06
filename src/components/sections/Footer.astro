@@ -1,0 +1,41 @@
+---
+const links = [
+  { href: '#studio', label: 'Studio' },
+  { href: '#identita', label: 'Identità' },
+  { href: '#contatti', label: 'Contatti' },
+];
+---
+
+<footer class="section-pad bg-cream-muted pb-12 pt-20">
+  <div class="mx-auto max-w-site">
+    <div class="flex flex-col items-start justify-between gap-8 border-b border-taupe pb-16 sm:flex-row sm:items-end">
+      <a href="#top" class="font-display text-[clamp(2rem,4vw,2.8rem)] leading-none text-terracotta">
+        Miriana Studio
+      </a>
+      <nav class="flex flex-wrap gap-8 sm:gap-10" aria-label="Footer">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta transition-opacity hover:opacity-70"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div class="flex flex-col items-start justify-between gap-4 pt-8 sm:flex-row sm:items-center">
+      <p class="text-[10px] font-medium uppercase tracking-[2px] text-taupe">
+        © 2026 Miriana Studio — FASANO, Puglia
+      </p>
+      <a
+        href="mailto:studio@mirianastudio.it"
+        class="text-xs tracking-[0.3px] text-taupe transition-opacity hover:opacity-70"
+      >
+        studio@mirianastudio.it
+      </a>
+    </div>
+  </div>
+</footer>

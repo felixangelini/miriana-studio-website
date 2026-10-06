@@ -1,0 +1,31 @@
+---
+import SmoothScroll from '../components/react/SmoothScroll';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Miriana Studio — Brand Design per l’hospitality',
+  description = 'Miriana Studio è un brand design studio specializzato in branding, strategia e identità visiva per brand dell’hospitality.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-cream text-terracotta">
+    <SmoothScroll client:load />
+    <slot />
+  </body>
+</html>

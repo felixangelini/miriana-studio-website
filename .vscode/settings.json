@@ -1,0 +1,26 @@
+{
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+  "tailwindCSS.experimental.configFile": "src/styles/global.css",
+  "tailwindCSS.includeLanguages": {
+    "astro": "html",
+    "javascript": "javascript",
+    "typescript": "typescript",
+    "typescriptreact": "typescriptreact"
+  },
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    ".*Class",
+    ".*ClassName"
+  ],
+  "tailwindCSS.lint.cssConflict": "ignore",
+  "tailwindCSS.lint.suggestCanonicalClasses": "warning",
+  "editor.quickSuggestions": {
+    "strings": "on"
+  }
+}

@@ -1,0 +1,50 @@
+---
+import Reveal from '../react/Reveal';
+import WorkCard from '../react/WorkCard';
+---
+
+<section class="section-pad flex h-svh max-h-svh flex-col justify-center overflow-hidden bg-cream py-10 md:py-12">
+  <div class="mx-auto flex h-full max-h-full w-full max-w-site flex-col">
+    <Reveal client:visible>
+      <p class="shrink-0 text-[10px] font-medium uppercase tracking-[2px] text-taupe">
+        Il campo di lavoro
+      </p>
+    </Reveal>
+
+    <div class="mt-4 grid min-h-0 flex-1 grid-cols-1 gap-3 md:mt-5 md:grid-cols-12 md:gap-3 lg:gap-4">
+      <WorkCard
+        client:visible
+        src="/images/boutique-hotel.png"
+        alt="Boutique hotel interior"
+        label="Boutique Hotel"
+        className="min-h-[28svh] md:col-span-5 md:min-h-0 md:h-full"
+      />
+
+      <div class="flex min-h-0 flex-col gap-3 md:col-span-7 lg:gap-4">
+        <WorkCard
+          client:visible
+          src="/images/masseria.png"
+          alt="Masseria pugliese"
+          label="Masseria"
+          className="min-h-[18svh] flex-[1.35] md:min-h-0"
+        />
+        <div class="grid min-h-0 flex-1 grid-cols-2 gap-3 lg:gap-4">
+          <WorkCard
+            client:visible
+            src="/images/relais.png"
+            alt="Relais con luce naturale"
+            label="Relais"
+            className="min-h-[14svh] md:min-h-0"
+          />
+          <WorkCard
+            client:visible
+            src="/images/resort.png"
+            alt="Resort terrazza mare"
+            label="Resort"
+            className="min-h-[14svh] md:min-h-0"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

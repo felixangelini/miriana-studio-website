@@ -1,0 +1,56 @@
+---
+import Reveal from '../react/Reveal';
+---
+
+<section id="identita" class="section-pad scroll-mt-20 bg-linen py-16 md:py-20">
+  <div class="mx-auto max-w-site border-t border-ink/12 pt-16">
+    <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-0">
+      <Reveal client:visible className="relative overflow-hidden bg-sand lg:col-span-5">
+        <img
+          src="/images/identita-sistema.png"
+          alt="Sistema di identità visiva applicata"
+          class="aspect-553/584 w-full object-cover"
+          loading="lazy"
+        />
+        <img
+          src="/images/identita-overlay.svg"
+          alt=""
+          aria-hidden="true"
+          class="pointer-events-none absolute inset-0 h-full w-full"
+        />
+        <p class="absolute bottom-6 left-6 text-[11px] font-medium uppercase tracking-[1.3px] text-cream/60">
+          Identità visiva — sistema
+        </p>
+      </Reveal>
+
+      <Reveal client:visible delay={0.12} className="relative flex flex-col justify-between lg:col-span-7 lg:min-h-direzione lg:pl-16">
+        <div class="pointer-events-none absolute right-0 top-0 hidden select-none font-display text-[clamp(8rem,22vw,18.75rem)] leading-none text-ink/4 lg:block">
+          04
+        </div>
+
+        <div class="relative mt-auto">
+          <h2 class="font-display text-[clamp(2rem,4vw,2.88rem)] leading-tight text-terracotta">
+            <span class="block">Una direzione,</span>
+            <span class="font-script text-[clamp(2.75rem,6vw,4.375rem)] leading-none text-olive">
+              prima di tutto.
+            </span>
+          </h2>
+
+          <div class="mt-10 grid gap-8 border-t border-ink/10 pt-10 md:grid-cols-2 md:gap-8">
+            <div class="space-y-4 text-sm leading-snug text-taupe">
+              <p>
+                Un progetto di branding parte dal comprendere il brand, il suo contesto e ciò che deve rendere riconoscibile.
+              </p>
+              <p>
+                Da questa direzione prende forma un’identità visiva: tipografia, colore, immagini, segni, materiali e applicazioni costruiti come parti dello stesso sistema.
+              </p>
+            </div>
+            <p class="text-sm leading-snug text-taupe">
+              Non singoli elementi, ma una direzione che continua nei diversi punti di contatto del brand.
+            </p>
+          </div>
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

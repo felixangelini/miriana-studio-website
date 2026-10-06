@@ -1,0 +1,38 @@
+---
+description: Tailwind CSS v4 conventions for Miriana Studio — avoid theme conflicts and IDE errors
+globs: "**/*.{astro,css,tsx,jsx,html}"
+alwaysApply: false
+---
+
+# Tailwind CSS v4 (Astro + Vite)
+
+Entry CSS: `src/styles/global.css` (imported once from `BaseLayout.astro`).
+Plugin: `@tailwindcss/vite` in `astro.config.mjs`. Do **not** add `tailwind.config.js` unless required.
+
+## Theme tokens
+
+Custom colors live in `@theme` as `--color-*`. Allowed brand names:
+
+- `cream`, `cream-soft`, `cream-muted`
+- `terracotta`, `olive`, `taupe`, `ink`, `sand`
+
+**Never** define single-value `--color-*` keys that collide with Tailwind defaults: `stone`, `slate`, `gray`, `zinc`, `neutral`, `red`, `orange`, `amber`, `yellow`, `lime`, `green`, `emerald`, `teal`, `cyan`, `sky`, `blue`, `indigo`, `violet`, `purple`, `fuchsia`, `pink`, `rose`, `black`, `white`.
+
+Fonts in `@theme` (`--font-display`, `--font-sans`, `--font-script`) already generate `font-display`, `font-sans`, `font-script`. Do **not** redeclare them with `@utility`.
+
+## Class usage
+
+- Astro / HTML: `class="..."`
+- React: `className="..."` (never `class` on React components)
+- Prefer theme utilities (`bg-cream`, `text-taupe`, `max-w-site`) over arbitrary values
+- Opacity: `bg-cream/96`, `text-ink/70`, `text-ink/4` (not `text-ink/[0.04]`)
+- Aspect ratios: `aspect-553/584` (not `aspect-[553/584]`)
+- Prefer canonical forms IntelliSense suggests: `min-h-svh`, `lg:order-0`, `backdrop-blur-sm`, `rotate-[-6.75deg]`
+- Keep `text-[clamp(...)]` for fluid type — that is intentional
+- Layout tokens: `max-w-site`, `max-w-prose-sm|md|lg`, `bg-linen`
+- Hero, gallery (`Il campo di lavoro`), and Studio sections use `h-svh max-h-svh` — keep them within one viewport
+- Studio: vertical “Lo studio” label + vertical line below; “Miriana / Studio” on two lines overlapping the portrait
+
+## Editor
+
+Keep `.vscode/settings.json` pointing IntelliSense at `src/styles/global.css` and associating `*.css` with language `tailwindcss` so `@theme` / `@utility` / `@import "tailwindcss"` are not flagged as invalid CSS.

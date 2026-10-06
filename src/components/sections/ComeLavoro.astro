@@ -1,0 +1,81 @@
+---
+import Reveal from '../react/Reveal';
+
+const steps = [
+  {
+    n: '01',
+    title: 'Comprendere',
+    text: 'Analizzare contesto, posizionamento, carattere e pubblico.',
+  },
+  {
+    n: '02',
+    title: 'Definire',
+    text: 'Dare una direzione precisa a ciò che il brand deve esprimere.',
+  },
+  {
+    n: '03',
+    title: 'Progettare',
+    text: 'Tradurre quella direzione in un’identità visiva coerente.',
+  },
+  {
+    n: '04',
+    title: 'Dare continuità',
+    text: 'Portare l’identità nella comunicazione, nei materiali e nello spazio.',
+  },
+];
+---
+
+<section id="metodo" class="section-pad scroll-mt-20 bg-olive/80 py-20 text-cream md:py-36">
+  <div class="mx-auto max-w-site">
+    <Reveal client:visible className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <div class="max-w-4xl">
+        <p class="text-sm font-medium uppercase tracking-[2.25px] text-cream">
+          Come lavoro
+        </p>
+        <h2 class="mt-4 font-display text-[clamp(2rem,5vw,3.75rem)] leading-tight text-cream">
+          Strategia — <em class="italic font-bold">Identità</em> — Percezione
+        </h2>
+      </div>
+      <p class="max-w-xs text-base leading-snug text-cream lg:pb-2">
+        Il progetto parte dalla comprensione prima di arrivare alla forma.
+      </p>
+    </Reveal>
+
+    <div class="mt-16 grid border-t border-cream/20 md:mt-20 md:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((step, i) => {
+          const borders = [
+            i < 3 ? 'border-b lg:border-b-0' : '',
+            i === 0 ? 'md:border-r' : '',
+            i === 1 ? 'lg:border-r' : '',
+            i === 2 ? 'md:border-r lg:border-r' : '',
+          ]
+            .filter(Boolean)
+            .join(' ');
+
+          return (
+            <Reveal
+              client:visible
+              delay={0.08 * i}
+              className={`relative overflow-hidden border-cream/20 px-6 py-10 md:px-8 ${borders}`}
+            >
+              <span class="pointer-events-none absolute -right-1 -top-2 select-none font-display text-[8rem] leading-none text-cream/10">
+                {step.n}
+              </span>
+              <p class="relative text-sm tracking-[2px] text-cream">
+                {step.n} —
+              </p>
+              <h3 class="relative mt-6 font-display text-[clamp(1.5rem,2.5vw,1.98rem)] font-bold leading-tight text-cream">
+                {step.title}
+              </h3>
+              <div class="relative mt-6 h-px w-8 bg-cream/55" />
+              <p class="relative mt-6 max-w-prose-sm text-base leading-snug text-cream">
+                {step.text}
+              </p>
+            </Reveal>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

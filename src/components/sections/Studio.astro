@@ -1,0 +1,74 @@
+---
+import Reveal from '../react/Reveal';
+---
+
+<section
+  id="studio"
+  class="section-pad relative flex h-svh max-h-svh scroll-mt-20 items-center overflow-x-clip overflow-y-hidden bg-cream"
+>
+  <div class="relative mx-auto grid h-full max-h-full w-full max-w-site grid-cols-1 items-center gap-6 py-16 md:gap-8 lg:grid-cols-12 lg:gap-6 lg:py-10">
+    <!-- Vertical label + line (desktop) -->
+    <div
+      class="absolute bottom-[18%] left-0 top-[28%] z-10 hidden flex-col items-center lg:flex"
+      aria-hidden="true"
+    >
+      <p
+        class="shrink-0 text-[11px] font-medium uppercase tracking-[2px] text-olive [writing-mode:vertical-rl] rotate-180"
+      >
+        Lo studio
+      </p>
+      <span class="mt-4 w-px flex-1 bg-olive/70"></span>
+    </div>
+
+    <Reveal client:visible className="relative z-10 lg:col-span-5 lg:pl-14">
+      <p class="mb-4 text-[11px] font-medium uppercase tracking-[2px] text-olive lg:hidden">
+        Lo studio
+      </p>
+
+      <h2 class="font-display text-[clamp(1.85rem,3.2vw,2.5rem)] italic leading-tight text-terracotta">
+        Miriana Amati
+      </h2>
+      <p class="font-script mt-0.5 origin-left rotate-[-6.75deg] text-[clamp(2rem,4vw,3.25rem)] leading-none text-olive">
+        brand designer
+      </p>
+
+      <div class="mt-6 max-w-prose-md space-y-3 font-display text-[clamp(0.95rem,1.35vw,1.15rem)] leading-snug text-taupe md:mt-8">
+        <p>
+          Lavoro tra strategia e design per costruire identità visive capaci di rendere più chiaro e riconoscibile il valore di un brand.
+        </p>
+        <p>
+          Il mio campo principale è l’hospitality, dove identità, comunicazione, materiali e spazio devono poter parlare la stessa lingua.
+        </p>
+      </div>
+
+      <a
+        href="#metodo"
+        class="mt-6 inline-flex items-center gap-4 text-sm font-medium uppercase tracking-[2px] text-olive transition-opacity hover:opacity-70 md:mt-8"
+      >
+        scopri
+        <span class="inline-block h-px w-8 bg-olive" aria-hidden="true"></span>
+      </a>
+    </Reveal>
+
+    <Reveal
+      client:visible
+      delay={0.12}
+      className="relative mx-auto h-[42svh] w-full max-w-md lg:col-span-6 lg:col-start-7 lg:mx-0 lg:h-[78svh] lg:max-h-[min(78svh,620px)] lg:max-w-none"
+    >
+      <div class="relative h-full w-full overflow-visible bg-sand">
+        <img
+          src="/images/studio-portrait.png"
+          alt="Miriana Amati, brand designer"
+          class="h-full w-full object-cover object-top"
+          loading="lazy"
+        />
+        <p
+          class="pointer-events-none absolute bottom-[4%] right-[-4%] z-20 text-right font-display text-[clamp(2.25rem,5.5vw,4.75rem)] leading-[0.95] text-olive md:right-[-12%] lg:right-[-18%]"
+        >
+          Miriana<br />
+          Studio
+        </p>
+      </div>
+    </Reveal>
+  </div>
+</section>

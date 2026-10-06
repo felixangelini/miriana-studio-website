@@ -1,0 +1,39 @@
+---
+import Reveal from '../react/Reveal';
+---
+
+<section class="section-pad bg-cream-soft py-20 md:py-36">
+  <div class="mx-auto grid max-w-site gap-12 lg:grid-cols-12 lg:gap-10">
+    <Reveal client:visible className="lg:col-span-5">
+      <p class="text-sm font-medium uppercase tracking-[2px] text-olive md:text-base">
+        Il punto di partenza
+      </p>
+      <h2 class="mt-8 font-display text-[clamp(2rem,4vw,3.15rem)] leading-[1.1] text-terracotta">
+        Il valore di un luogo non sempre si percepisce{' '}
+        <span class="font-script text-[clamp(2.75rem,6vw,4.375rem)] leading-none text-olive">
+          prima di viverlo.
+        </span>
+      </h2>
+    </Reveal>
+
+    <Reveal client:visible delay={0.12} className="flex flex-col gap-8 lg:col-span-6 lg:col-start-7 lg:pt-16">
+      <p class="max-w-md text-lg leading-relaxed text-taupe">
+        Una struttura può avere un carattere preciso, un’esperienza curata e un valore reale.
+      </p>
+      <p class="max-w-md text-lg leading-relaxed text-taupe">
+        Se identità e comunicazione non lo rendono leggibile, quella percezione rischia di fermarsi prima.
+      </p>
+      <p class="max-w-md text-lg font-medium leading-relaxed text-ink/70">
+        Il branding parte da qui: dalla distanza tra ciò che un brand è e ciò che comunica.
+      </p>
+      <div class="h-px w-full max-w-md bg-sand/70"></div>
+      <a
+        href="#metodo"
+        class="inline-flex items-center gap-4 text-[13px] font-medium uppercase tracking-[2px] text-olive transition-opacity hover:opacity-70"
+      >
+        Come costruiamo un’identità
+        <span class="inline-block h-px w-8 bg-olive" aria-hidden="true"></span>
+      </a>
+    </Reveal>
+  </div>
+</section>
