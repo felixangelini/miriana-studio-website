@@ -10,7 +10,7 @@ import Reveal from '../react/Reveal';
   <div
     class="relative order-1 h-[32svh] max-h-[36svh] w-full shrink-0 overflow-hidden bg-sand lg:absolute lg:inset-y-0 lg:right-0 lg:order-0 lg:h-full lg:max-h-none lg:w-[40%]"
   >
-    <Reveal client:load onMount x={-72} y={0} className="h-full w-full" delay={0.05}>
+    <Reveal client:load onMount x={-72} y={0} className="h-full w-full" delay={0.1} duration={1.6}>
       <img
         src="/images/hero-interior.png"
         alt="Interno architettonico con luce naturale"
@@ -23,20 +23,23 @@ import Reveal from '../react/Reveal';
   <div
     class="section-pad relative z-10 order-2 flex min-h-0 flex-1 flex-col justify-center py-6 lg:order-0 lg:h-full lg:w-[60%] lg:py-8 lg:pt-24"
   >
-    <Reveal client:load onMount x={64} y={0} delay={0.12}>
-      <p class="mb-6 text-xs font-medium uppercase tracking-[2px] text-olive md:mb-8 md:text-sm">
-        Brand Design · Hospitality
-      </p>
-    </Reveal>
+    <p class="mb-6 flex flex-wrap items-baseline gap-x-2 text-xs font-medium uppercase tracking-[2px] text-olive md:mb-8 md:text-sm">
+      <Reveal client:load onMount x={-56} y={0} delay={0.18} duration={1.5} className="inline-block">
+        <span>Brand Design ·</span>
+      </Reveal>
+      <Reveal client:load onMount x={0} y={0} delay={0.55} duration={1.8} className="inline-block">
+        <span>Hospitality</span>
+      </Reveal>
+    </p>
 
-    <Reveal client:load onMount x={72} y={0} delay={0.22}>
+    <Reveal client:load onMount x={-64} y={0} delay={0.35} duration={1.55}>
       <h1 class="font-display text-[clamp(2rem,5vw,3.85rem)] leading-[1.08] text-terracotta">
         Branding e identità <br />
         visiva per <em class="italic">l’hospitality</em>
       </h1>
     </Reveal>
 
-    <Reveal client:load onMount x={80} y={0} delay={0.34} className="mt-8 md:mt-10">
+    <Reveal client:load onMount x={-72} y={0} delay={0.55} duration={1.65} className="mt-8 md:mt-10">
       <div class="max-w-prose-lg space-y-3 font-display text-[clamp(0.95rem,1.5vw,1.2rem)] leading-snug text-olive md:space-y-4">
         <p>
           Miriana Studio è un{' '}

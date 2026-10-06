@@ -9,6 +9,7 @@ import {
 type RevealProps = HTMLMotionProps<'div'> & {
   children: ReactNode;
   delay?: number;
+  duration?: number;
   /** Vertical offset (default 40). Set 0 to disable. */
   y?: number;
   /** Horizontal offset: positive = from right, negative = from left */
@@ -22,6 +23,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function Reveal({
   children,
   delay = 0,
+  duration = 1,
   y = 40,
   x = 0,
   onMount = false,
@@ -51,17 +53,16 @@ export default function Reveal({
   }
 
   const play = ready && (onMount || inView);
-  const mergedClass = ['block', className].filter(Boolean).join(' ');
   const hidden = { opacity: 0, x, y };
   const visible = { opacity: 1, x: 0, y: 0 };
 
   return (
     <motion.div
       ref={ref}
-      className={mergedClass}
+      className={className}
       initial={hidden}
       animate={play ? visible : hidden}
-      transition={{ duration: 1, ease, delay }}
+      transition={{ duration, ease, delay }}
       {...props}
     >
       {children}
