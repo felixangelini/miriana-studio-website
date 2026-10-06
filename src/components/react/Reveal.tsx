@@ -1,59 +1,67 @@
-import { motion, useReducedMotion, type HTMLMotionProps } from 'motion/react';
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  type HTMLMotionProps,
+} from 'motion/react';
 
 type RevealProps = HTMLMotionProps<'div'> & {
   children: ReactNode;
   delay?: number;
+  /** Vertical offset (default 40). Set 0 to disable. */
   y?: number;
-  /** Animate on mount instead of when entering the viewport */
+  /** Horizontal offset: positive = from right, negative = from left */
+  x?: number;
+  /** Animate as soon as the island mounts (hero / client:visible) */
   onMount?: boolean;
 };
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Reveal({
   children,
   delay = 0,
-  y = 28,
+  y = 40,
+  x = 0,
   onMount = false,
   className,
   ...props
 }: RevealProps) {
   const reduceMotion = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, {
+    once: true,
+    amount: 0.2,
+    margin: '0px 0px -10% 0px',
+  });
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setReady(true);
+    const id = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(id);
   }, []);
 
   if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
-
-  const hidden = { opacity: 0, y };
-  const visible = { opacity: 1, y: 0 };
-  const transition = { duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay };
-  const mergedClass = ['block', className].filter(Boolean).join(' ');
-
-  if (onMount) {
     return (
-      <motion.div
-        className={mergedClass}
-        initial={ready ? hidden : false}
-        animate={ready ? visible : undefined}
-        transition={transition}
-        {...props}
-      >
+      <div ref={ref} className={className}>
         {children}
-      </motion.div>
+      </div>
     );
   }
 
+  const play = ready && (onMount || inView);
+  const mergedClass = ['block', className].filter(Boolean).join(' ');
+  const hidden = { opacity: 0, x, y };
+  const visible = { opacity: 1, x: 0, y: 0 };
+
   return (
     <motion.div
+      ref={ref}
       className={mergedClass}
-      initial={ready ? hidden : false}
-      whileInView={visible}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={transition}
+      initial={hidden}
+      animate={play ? visible : hidden}
+      transition={{ duration: 1, ease, delay }}
       {...props}
     >
       {children}

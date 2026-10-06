@@ -1,15 +1,17 @@
 ---
 import Reveal from '../react/Reveal';
+import Parallax from '../react/Parallax';
 ---
 
 <section
   id="studio"
+  data-snap
   class="section-pad relative flex h-svh max-h-svh scroll-mt-20 items-center overflow-x-clip overflow-y-hidden bg-cream"
 >
-  <div class="relative mx-auto grid h-full max-h-full w-full max-w-site grid-cols-1 items-center gap-6 py-16 md:gap-8 lg:grid-cols-12 lg:gap-6 lg:py-10">
+  <div class="relative mx-auto grid h-full max-h-full w-full max-w-site grid-cols-1 items-end gap-8 py-12 lg:grid-cols-12 lg:gap-6 lg:pb-20 lg:pt-8">
     <!-- Vertical label + line (desktop) -->
     <div
-      class="absolute bottom-[18%] left-0 top-[28%] z-10 hidden flex-col items-center lg:flex"
+      class="absolute bottom-20 left-0 top-[38%] z-10 hidden flex-col items-center lg:flex"
       aria-hidden="true"
     >
       <p
@@ -20,7 +22,7 @@ import Reveal from '../react/Reveal';
       <span class="mt-4 w-px flex-1 bg-olive/70"></span>
     </div>
 
-    <Reveal client:visible className="relative z-10 lg:col-span-5 lg:pl-14">
+    <Reveal client:visible className="relative z-10 self-end pb-8 lg:col-span-4 lg:pl-12">
       <p class="mb-4 text-[11px] font-medium uppercase tracking-[2px] text-olive lg:hidden">
         Lo studio
       </p>
@@ -53,21 +55,30 @@ import Reveal from '../react/Reveal';
     <Reveal
       client:visible
       delay={0.12}
-      className="relative mx-auto h-[42svh] w-full max-w-md lg:col-span-6 lg:col-start-7 lg:mx-0 lg:h-[78svh] lg:max-h-[min(78svh,620px)] lg:max-w-none"
+      className="relative mx-auto self-end lg:col-span-5 lg:col-start-7 lg:mx-0"
     >
-      <div class="relative h-full w-full overflow-visible bg-sand">
-        <img
-          src="/images/studio-portrait.png"
-          alt="Miriana Amati, brand designer"
-          class="h-full w-full object-cover object-top"
-          loading="lazy"
-        />
-        <p
-          class="pointer-events-none absolute bottom-[4%] right-[-4%] z-20 text-right font-display text-[clamp(2.25rem,5.5vw,4.75rem)] leading-[0.95] text-olive md:right-[-12%] lg:right-[-18%]"
+      <div class="relative aspect-447/606 h-[min(70svh,28rem)] w-auto max-w-full overflow-visible bg-sand sm:h-[min(78svh,34rem)] lg:h-[min(82svh,36rem)]">
+        <div class="absolute inset-0 overflow-hidden">
+          <Parallax client:visible distance={64} className="h-full w-full">
+            <img
+              src="/images/studio-portrait.png"
+              alt="Miriana Amati, brand designer"
+              class="h-[118%] w-full object-cover object-center"
+              loading="lazy"
+            />
+          </Parallax>
+        </div>
+        <Parallax
+          client:visible
+          distance={36}
+          reverse
+          className="pointer-events-none absolute bottom-[3%] left-[calc(100%-30px)] z-20"
         >
-          Miriana<br />
-          Studio
-        </p>
+          <p class="font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.95] text-olive">
+            Miriana<br />
+            Studio
+          </p>
+        </Parallax>
       </div>
     </Reveal>
   </div>

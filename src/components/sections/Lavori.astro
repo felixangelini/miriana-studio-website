@@ -3,9 +3,9 @@ import Reveal from '../react/Reveal';
 import WorkCard from '../react/WorkCard';
 ---
 
-<section class="section-pad flex h-svh max-h-svh flex-col justify-center overflow-hidden bg-cream py-10 md:py-12">
+<section data-snap class="section-pad flex h-svh max-h-svh flex-col justify-start overflow-hidden bg-cream py-10 md:py-12">
   <div class="mx-auto flex h-full max-h-full w-full max-w-site flex-col">
-    <Reveal client:visible>
+    <Reveal client:visible className="mt-8 md:mt-12">
       <p class="shrink-0 text-[10px] font-medium uppercase tracking-[2px] text-taupe">
         Il campo di lavoro
       </p>
@@ -17,6 +17,9 @@ import WorkCard from '../react/WorkCard';
         src="/images/boutique-hotel.png"
         alt="Boutique hotel interior"
         label="Boutique Hotel"
+        x={-56}
+        y={28}
+        delay={0.08}
         className="min-h-[28svh] md:col-span-5 md:min-h-0 md:h-full"
       />
 
@@ -26,6 +29,9 @@ import WorkCard from '../react/WorkCard';
           src="/images/masseria.png"
           alt="Masseria pugliese"
           label="Masseria"
+          x={48}
+          y={20}
+          delay={0.2}
           className="min-h-[18svh] flex-[1.35] md:min-h-0"
         />
         <div class="grid min-h-0 flex-1 grid-cols-2 gap-3 lg:gap-4">
@@ -34,6 +40,9 @@ import WorkCard from '../react/WorkCard';
             src="/images/relais.png"
             alt="Relais con luce naturale"
             label="Relais"
+            x={0}
+            y={52}
+            delay={0.32}
             className="min-h-[14svh] md:min-h-0"
           />
           <WorkCard
@@ -41,6 +50,9 @@ import WorkCard from '../react/WorkCard';
             src="/images/resort.png"
             alt="Resort terrazza mare"
             label="Resort"
+            x={40}
+            y={-28}
+            delay={0.44}
             className="min-h-[14svh] md:min-h-0"
           />
         </div>

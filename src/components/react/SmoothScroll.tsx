@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
+import Snap from 'lenis/snap';
 
 declare global {
   interface Window {
@@ -10,10 +11,32 @@ declare global {
 export default function SmoothScroll() {
   useEffect(() => {
     let frame = 0;
+    const preferReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const lenis = new Lenis({
-      duration: 1.15,
-      smoothWheel: true,
+      duration: preferReduced ? 0.6 : 1.35,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: !preferReduced,
+      touchMultiplier: 1.15,
     });
+
+    let snap: Snap | null = null;
+
+    if (!preferReduced) {
+      // Calamita solo vicino ai bordi sezione — scroll libero nel mezzo
+      snap = new Snap(lenis, {
+        type: 'proximity',
+        distanceThreshold: '18%',
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        debounce: 120,
+      });
+
+      const sections = [
+        ...document.querySelectorAll<HTMLElement>('[data-snap]'),
+      ];
+      snap.addElements(sections, { align: 'start' });
+    }
 
     window.__lenis = lenis;
     document.documentElement.classList.add('lenis', 'lenis-smooth');
@@ -33,15 +56,25 @@ export default function SmoothScroll() {
       const el = document.querySelector(hash);
       if (!el) return;
       event.preventDefault();
-      lenis.scrollTo(el as HTMLElement, { offset: -72 });
+      lenis.scrollTo(el as HTMLElement, {
+        offset: 0,
+        duration: preferReduced ? 0.5 : 1.3,
+      });
       history.pushState(null, '', hash);
     };
 
+    const onResize = () => {
+      snap?.resize();
+    };
+
     document.addEventListener('click', onHashClick);
+    window.addEventListener('resize', onResize);
 
     return () => {
       document.removeEventListener('click', onHashClick);
+      window.removeEventListener('resize', onResize);
       cancelAnimationFrame(frame);
+      snap?.destroy();
       document.documentElement.classList.remove('lenis', 'lenis-smooth');
       lenis.destroy();
       delete window.__lenis;

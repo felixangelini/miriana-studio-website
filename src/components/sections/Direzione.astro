@@ -1,17 +1,20 @@
 ---
 import Reveal from '../react/Reveal';
+import Parallax from '../react/Parallax';
 ---
 
-<section id="identita" class="section-pad scroll-mt-20 bg-linen py-16 md:py-20">
+<section id="identita" data-snap class="section-pad scroll-mt-20 bg-linen py-16 md:py-20">
   <div class="mx-auto max-w-site border-t border-ink/12 pt-16">
     <div class="grid items-start gap-10 lg:grid-cols-12 lg:gap-0">
       <Reveal client:visible className="relative overflow-hidden bg-sand lg:col-span-5">
-        <img
-          src="/images/identita-sistema.png"
-          alt="Sistema di identità visiva applicata"
-          class="aspect-553/584 w-full object-cover"
-          loading="lazy"
-        />
+        <Parallax client:visible distance={56} className="aspect-553/584 w-full overflow-hidden">
+          <img
+            src="/images/identita-sistema.png"
+            alt="Sistema di identità visiva applicata"
+            class="h-[120%] w-full object-cover"
+            loading="lazy"
+          />
+        </Parallax>
         <img
           src="/images/identita-overlay.svg"
           alt=""
@@ -24,9 +27,11 @@ import Reveal from '../react/Reveal';
       </Reveal>
 
       <Reveal client:visible delay={0.12} className="relative flex flex-col justify-between lg:col-span-7 lg:min-h-direzione lg:pl-16">
-        <div class="pointer-events-none absolute right-0 top-0 hidden select-none font-display text-[clamp(8rem,22vw,18.75rem)] leading-none text-ink/4 lg:block">
-          04
-        </div>
+        <Parallax client:visible distance={28} reverse className="pointer-events-none absolute right-0 top-0 hidden">
+          <div class="select-none font-display text-[clamp(8rem,22vw,18.75rem)] leading-none text-ink/4">
+            04
+          </div>
+        </Parallax>
 
         <div class="relative mt-auto">
           <h2 class="font-display text-[clamp(2rem,4vw,2.88rem)] leading-tight text-terracotta">
