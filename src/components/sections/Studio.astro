@@ -45,10 +45,13 @@ import Parallax from '../react/Parallax';
 
       <a
         href="#metodo"
-        class="mt-6 inline-flex items-center gap-4 text-sm font-medium uppercase tracking-[2px] text-olive transition-opacity hover:opacity-70 md:mt-8"
+        class="group mt-6 inline-flex items-center gap-4 text-sm font-medium uppercase tracking-[2px] text-olive transition-opacity hover:opacity-70 md:mt-8"
       >
         scopri
-        <span class="inline-block h-px w-8 bg-olive" aria-hidden="true"></span>
+        <span
+          class="inline-block h-px w-8 origin-left bg-olive transition-[width] duration-300 ease-out group-hover:w-3"
+          aria-hidden="true"
+        ></span>
       </a>
     </Reveal>
 
@@ -72,9 +75,9 @@ import Parallax from '../react/Parallax';
           client:visible
           distance={36}
           reverse
-          className="pointer-events-none absolute bottom-[3%] left-[calc(100%-30px)] z-20"
+          className="pointer-events-none absolute bottom-[3%] left-[42%] z-20 sm:left-[48%] lg:left-[52%]"
         >
-          <p class="font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[0.95] text-olive">
+          <p class="font-display text-[clamp(3rem,7vw,6rem)] leading-[0.95] text-olive">
             Miriana<br />
             Studio
           </p>

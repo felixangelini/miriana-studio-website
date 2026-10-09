@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const links = [
-  { href: '#studio', label: 'Studio' },
-  { href: '#identita', label: 'Identità' },
-  { href: '#contatti', label: 'Contatti' },
+  { href: '/#studio', label: 'Studio' },
+  { href: '/#identita', label: 'Identità' },
+  { href: '/contatti', label: 'Contatti' },
 ];
 
 export default function Nav() {
@@ -14,7 +14,7 @@ export default function Nav() {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-sand/40 bg-cream/96 backdrop-blur-sm">
       <div className="section-pad flex h-16 items-center justify-between">
         <a
-          href="#top"
+          href="/"
           className="font-display text-[14.72px] tracking-[0.6px] text-ink"
         >
           Miriana Studio

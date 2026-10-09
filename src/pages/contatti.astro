@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/react/Nav';
+import ContactForm from '../components/react/ContactForm';
+import Reveal from '../components/react/Reveal';
+import Footer from '../components/sections/Footer.astro';
+---
+
+<BaseLayout
+  title="Contatti — Miriana Studio"
+  description="Scrivi a Miriana Studio. La prima conversazione è gratuita: raccontami il tuo progetto hospitality."
+>
+  <Nav client:load />
+  <main>
+    <section class="section-pad bg-cream pb-20 pt-32 md:pb-24 md:pt-40">
+      <div class="mx-auto grid max-w-site gap-6 lg:grid-cols-12 lg:items-end lg:gap-8">
+        <Reveal client:visible onMount className="lg:col-span-2" y={20} duration={0.8}>
+          <p class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">
+            Contatti
+          </p>
+        </Reveal>
+        <Reveal
+          client:visible
+          onMount
+          delay={0.1}
+          className="lg:col-span-10"
+          y={48}
+          duration={1.1}
+        >
+          <h1
+            class="font-display text-[clamp(2.5rem,6vw,4.75rem)] leading-[1.05] text-terracotta"
+          >
+            Parliamo del tuo<br class="hidden sm:block" /> progetto.
+          </h1>
+        </Reveal>
+      </div>
+      <Reveal client:visible onMount delay={0.28} y={0} duration={0.9}>
+        <div class="mx-auto mt-14 max-w-site border-t border-ink/12"></div>
+      </Reveal>
+    </section>
+
+    <section class="section-pad bg-cream py-16 md:py-24">
+      <div class="mx-auto grid max-w-site gap-16 lg:grid-cols-12 lg:gap-24">
+        <Reveal client:visible delay={0.05} className="flex flex-col gap-10 lg:col-span-4">
+          <p class="max-w-prose-md text-sm leading-relaxed text-taupe">
+            La prima conversazione è gratuita. Raccontami il tuo progetto: dove sei, cosa
+            fai, dove vuoi arrivare.
+          </p>
+
+          <div class="h-px w-full bg-sand/60"></div>
+
+          <div class="flex flex-col gap-6">
+            <div>
+              <p class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">
+                Email
+              </p>
+              <a
+                href="mailto:info@mirianastudio.it"
+                class="mt-2 block text-sm text-ink transition-opacity hover:opacity-70"
+              >
+                info@mirianastudio.it
+              </a>
+            </div>
+            <div>
+              <p class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">
+                Dove sono
+              </p>
+              <p class="mt-2 text-sm text-ink">Fasano, Puglia — Italia</p>
+              <p class="mt-1 text-[13px] text-taupe">Lavoro in tutta Italia</p>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal
+          client:visible
+          delay={0.15}
+          className="lg:col-span-7 lg:col-start-6"
+          y={36}
+        >
+          <ContactForm client:load />
+        </Reveal>
+      </div>
+    </section>
+
+    <section class="bg-sand" aria-hidden="true">
+      <Reveal client:visible y={32} duration={1.2}>
+        <div class="relative h-[min(50vw,26rem)] w-full overflow-hidden md:h-102">
+          <img
+            src="/images/contatti-muro.jpg"
+            alt=""
+            class="absolute inset-0 size-full object-cover opacity-60"
+            loading="lazy"
+          />
+        </div>
+      </Reveal>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

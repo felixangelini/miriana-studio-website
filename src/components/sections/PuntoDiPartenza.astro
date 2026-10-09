@@ -2,7 +2,7 @@
 import Reveal from '../react/Reveal';
 ---
 
-<section data-snap class="section-pad bg-cream-soft py-20 md:py-36">
+<section data-snap class="section-pad bg-cream py-20 md:py-36">
   <div class="mx-auto grid max-w-site gap-12 lg:grid-cols-12 lg:gap-10">
     <Reveal client:visible className="lg:col-span-5">
       <p class="text-sm font-medium uppercase tracking-[2px] text-olive md:text-base">
@@ -29,10 +29,13 @@ import Reveal from '../react/Reveal';
       <div class="h-px w-full max-w-md bg-sand/70"></div>
       <a
         href="#metodo"
-        class="inline-flex items-center gap-4 text-[13px] font-medium uppercase tracking-[2px] text-olive transition-opacity hover:opacity-70"
+        class="group inline-flex items-center gap-4 text-[13px] font-medium uppercase tracking-[2px] text-olive transition-opacity hover:opacity-70"
       >
         Come costruiamo un’identità
-        <span class="inline-block h-px w-8 bg-olive" aria-hidden="true"></span>
+        <span
+          class="inline-block h-px w-8 origin-left bg-olive transition-[width] duration-300 ease-out group-hover:w-3"
+          aria-hidden="true"
+        ></span>
       </a>
     </Reveal>
   </div>
