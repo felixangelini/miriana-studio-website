@@ -66,7 +66,7 @@ const {
         cta && (
           <Reveal client:visible delay={0.16} className="flex justify-end pt-4">
             <a
-              href="/contatti"
+              href={`/contatti?percorso=${id}#progetto`}
               class="inline-flex items-center gap-3 border-b border-ink/30 pb-1 text-[10px] font-medium uppercase tracking-[2px] text-ink transition-opacity hover:opacity-70"
             >
               Parliamo del percorso

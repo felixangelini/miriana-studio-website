@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { PERCORSI, percorsoLabel } from '../../data/percorsi';
 
 type Status = 'idle' | 'sending' | 'success' | 'error';
 
@@ -11,9 +12,14 @@ const labelClass =
 const inputClass =
   'w-full border-0 bg-transparent text-[13.76px] text-ink outline-none placeholder:text-sand';
 
-export default function ContactForm() {
+type Props = {
+  percorso?: string;
+};
+
+export default function ContactForm({ percorso = '' }: Props) {
   const [status, setStatus] = useState<Status>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [path, setPath] = useState(() => percorsoLabel(percorso) ? percorso : '');
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -34,6 +40,7 @@ export default function ContactForm() {
           structure: data.get('structure'),
           email: data.get('email'),
           phone: data.get('phone'),
+          percorso: data.get('percorso'),
           project: data.get('project'),
           // honeypot — non usare nomi tipo website/url (autofill browser)
           company_fax: data.get('company_fax'),
@@ -51,6 +58,7 @@ export default function ContactForm() {
       }
 
       form.reset();
+      setPath('');
       setStatus('success');
     } catch {
       setStatus('error');
@@ -131,6 +139,26 @@ export default function ContactForm() {
           placeholder="Numero di telefono"
           className={inputClass}
         />
+      </div>
+
+      <div className={fieldWrap}>
+        <label className={labelClass} htmlFor="percorso">
+          Hai già un’idea del tuo percorso?
+        </label>
+        <select
+          id="percorso"
+          name="percorso"
+          value={path}
+          onChange={(event) => setPath(event.target.value)}
+          className={`${inputClass} cursor-pointer ${path ? '' : 'text-sand'}`}
+        >
+          <option value="">Non ancora</option>
+          {PERCORSI.map((item) => (
+            <option key={item.value} value={item.value}>
+              {item.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className={fieldWrap}>

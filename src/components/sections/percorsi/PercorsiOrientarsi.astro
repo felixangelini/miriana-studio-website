@@ -4,20 +4,25 @@ import Reveal from '../../react/Reveal';
 const rows = [
   {
     index: '01',
+    slug: 'foundation',
     text: 'Sto avviando la mia attività e voglio costruire e basi della mia identità.',
     path: 'Brand Foundation',
   },
   {
     index: '02',
+    slug: 'identity',
     text: 'Voglio definire la strategia e l’identità del mio brand per iniziare a comunicarlo con chiarezza.',
     path: 'Brand Identity',
   },
   {
     index: '03',
+    slug: 'direction',
     text: 'Voglio definire il mio brand e avere una guida nelle scelte creative e nella comunicazione, insieme al mio team e ai professionisti coinvolti.',
     path: 'Brand Direction',
   },
 ];
+
+const ease = 'ease-[cubic-bezier(0.22,1,0.36,1)]';
 ---
 
 <section class="section-pad bg-cream py-24 md:py-36">
@@ -38,17 +43,77 @@ const rows = [
       <ul>
         {
           rows.map((row, i) => (
-            <li class="border-t border-ink/15">
+            <li class="border-t border-ink/15 transition-colors duration-500 has-[a:hover]:border-transparent has-[a:focus-visible]:border-transparent">
               <a
-                class="grid gap-4 py-7 sm:grid-cols-[2rem_1fr_auto] sm:items-start sm:gap-8"
+                href={`/contatti?percorso=${row.slug}#progetto`}
+                class:list={[
+                  'group relative -mx-3 grid gap-4 px-3 py-7 sm:grid-cols-[2rem_1fr_auto] sm:items-start sm:gap-8',
+                  'transition-[background-color,transform,box-shadow] duration-500',
+                  ease,
+                  'hover:-translate-y-0.5 hover:translate-x-1 hover:bg-terracotta hover:shadow-[0_18px_40px_-22px_rgba(125,49,7,0.55)]',
+                  'focus-visible:-translate-y-0.5 focus-visible:translate-x-1 focus-visible:bg-terracotta',
+                  'motion-reduce:transform-none motion-reduce:transition-colors',
+                ]}
               >
+                <span
+                  aria-hidden="true"
+                  class:list={[
+                    'pointer-events-none absolute bottom-3 left-1.5 top-3 w-px origin-top scale-y-0 bg-white',
+                    'transition-transform duration-700',
+                    ease,
+                    'group-hover:scale-y-100 group-focus-visible:scale-y-100',
+                    'motion-reduce:transition-none',
+                  ]}
+                />
                 <Reveal client:visible delay={i * 0.06} className="contents">
-                  <span class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">
+                  <span
+                    class:list={[
+                      'text-[10px] font-medium uppercase tracking-[2px] text-terracotta',
+                      'transition-[color,transform,letter-spacing] duration-500',
+                      ease,
+                      'group-hover:translate-x-1 group-hover:tracking-[4px] group-hover:text-white',
+                      'group-focus-visible:translate-x-1 group-focus-visible:tracking-[4px] group-focus-visible:text-white',
+                      'motion-reduce:transform-none',
+                    ]}
+                  >
                     {row.index}
                   </span>
-                  <span class="max-w-sm text-base leading-snug text-taupe">{row.text}</span>
-                  <span class="font-display text-lg italic text-terracotta sm:text-right">
+                  <span
+                    class:list={[
+                      'max-w-sm text-base leading-snug text-taupe',
+                      'transition-[color,transform] delay-75 duration-700',
+                      ease,
+                      'group-hover:translate-x-2 group-hover:text-white',
+                      'group-focus-visible:translate-x-2 group-focus-visible:text-white',
+                      'motion-reduce:transform-none',
+                    ]}
+                  >
+                    {row.text}
+                  </span>
+                  <span
+                    class:list={[
+                      'flex items-baseline gap-3 font-display text-lg italic text-terracotta sm:justify-end',
+                      'transition-[color,transform] delay-150 duration-700',
+                      ease,
+                      'group-hover:translate-x-1 group-hover:text-white',
+                      'group-focus-visible:translate-x-1 group-focus-visible:text-white',
+                      'motion-reduce:transform-none',
+                    ]}
+                  >
                     {row.path}
+                    <span
+                      aria-hidden="true"
+                      class:list={[
+                        'inline-block translate-x-2 text-[0.85em] not-italic opacity-0',
+                        'transition-[transform,opacity] delay-200 duration-500',
+                        ease,
+                        'group-hover:translate-x-0 group-hover:opacity-100',
+                        'group-focus-visible:translate-x-0 group-focus-visible:opacity-100',
+                        'motion-reduce:hidden',
+                      ]}
+                    >
+                      →
+                    </span>
                   </span>
                 </Reveal>
               </a>

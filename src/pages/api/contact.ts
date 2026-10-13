@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { CONTACT_FROM, CONTACT_TO, RESEND_API_KEY } from 'astro:env/server';
 import { Resend } from 'resend';
+import { percorsoLabel } from '../../data/percorsi';
 
 export const prerender = false;
 
@@ -11,6 +12,7 @@ type ContactBody = {
   structure?: unknown;
   email?: unknown;
   phone?: unknown;
+  percorso?: unknown;
   project?: unknown;
   company_fax?: unknown;
   /** @deprecated honeypot vecchio — ignorato se presente */
@@ -56,6 +58,7 @@ export const POST: APIRoute = async ({ request }) => {
   const structure = asTrimmedString(body.structure, 160);
   const email = asTrimmedString(body.email, 160);
   const phone = asTrimmedString(body.phone, 40);
+  const percorso = percorsoLabel(asTrimmedString(body.percorso, 40));
   const project = asTrimmedString(body.project, 4000);
 
   if (!name || !email) {
@@ -92,6 +95,7 @@ export const POST: APIRoute = async ({ request }) => {
       structure ? `Struttura / progetto: ${structure}` : null,
       `Email: ${email}`,
       phone ? `Telefono: ${phone}` : null,
+      percorso ? `Percorso: ${percorso}` : null,
       project ? '' : null,
       project ? 'Messaggio:' : null,
       project || null,
@@ -101,13 +105,14 @@ export const POST: APIRoute = async ({ request }) => {
       from,
       to: [to],
       replyTo: email,
-      subject: `Nuovo contatto — ${name}`,
+      subject: percorso ? `Nuovo contatto — ${name} — ${percorso}` : `Nuovo contatto — ${name}`,
       text: textLines.join('\n'),
       html: `
       <p><strong>Nome:</strong> ${escapeHtml(name)}</p>
       ${structure ? `<p><strong>Struttura / progetto:</strong> ${escapeHtml(structure)}</p>` : ''}
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       ${phone ? `<p><strong>Telefono:</strong> ${escapeHtml(phone)}</p>` : ''}
+      ${percorso ? `<p><strong>Percorso:</strong> ${escapeHtml(percorso)}</p>` : ''}
       ${
         project
           ? `<p><strong>Messaggio:</strong></p><p>${escapeHtml(project).replace(/\n/g, '<br />')}</p>`

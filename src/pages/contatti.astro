@@ -4,6 +4,10 @@ import Nav from '../components/react/Nav';
 import ContactForm from '../components/react/ContactForm';
 import Reveal from '../components/react/Reveal';
 import Footer from '../components/sections/Footer.astro';
+
+export const prerender = false;
+
+const percorso = Astro.url.searchParams.get('percorso') ?? '';
 ---
 
 <BaseLayout
@@ -40,7 +44,7 @@ import Footer from '../components/sections/Footer.astro';
       </Reveal>
     </section>
 
-    <section class="section-pad bg-cream py-16 md:py-24">
+    <section id="progetto" class="section-pad scroll-mt-24 bg-cream py-16 md:py-24">
       <div class="mx-auto grid max-w-site gap-16 lg:grid-cols-12 lg:gap-24">
         <Reveal client:visible delay={0.05} className="flex flex-col gap-10 lg:col-span-4">
           <p class="max-w-prose-md text-sm leading-relaxed text-taupe">
@@ -89,7 +93,7 @@ import Footer from '../components/sections/Footer.astro';
           className="lg:col-span-7 lg:col-start-6"
           y={36}
         >
-          <ContactForm client:load />
+          <ContactForm client:load percorso={percorso} />
         </Reveal>
       </div>
     </section>
