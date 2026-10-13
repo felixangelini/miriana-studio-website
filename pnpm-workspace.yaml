@@ -2,6 +2,6 @@ allowBuilds:
   esbuild: true
   sharp: true
 minimumReleaseAgeExclude:
-  - '@astrojs/internal-helpers@0.12.0'
-  - '@astrojs/react@7.0.1'
-  - '@astrojs/vercel@11.0.13'
+  - '@astrojs/internal-helpers'
+  - '@astrojs/react'
+  - '@astrojs/vercel'

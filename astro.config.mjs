@@ -18,7 +18,12 @@ export default defineConfig({
 
   env: {
     schema: {
-      RESEND_API_KEY: envField.string({ context: 'server', access: 'secret' }),
+      // optional: su Vercel la key arriva a runtime via process.env; evita crash al boot se manca
+      RESEND_API_KEY: envField.string({
+        context: 'server',
+        access: 'secret',
+        optional: true,
+      }),
       CONTACT_TO: envField.string({
         context: 'server',
         access: 'secret',

@@ -22,6 +22,12 @@ function asTrimmedString(value: unknown, max: number): string {
   return value.trim().slice(0, max);
 }
 
+/** Rimuove virgolette accidentali da valori env (tipiche del copy da .env) */
+function cleanEnv(value: string | undefined): string {
+  if (!value) return '';
+  return value.trim().replace(/^["']|["']$/g, '');
+}
+
 function json(status: number, body: Record<string, unknown>) {
   return new Response(JSON.stringify(body), {
     status,
@@ -60,33 +66,44 @@ export const POST: APIRoute = async ({ request }) => {
     return json(400, { ok: false, error: 'Indirizzo email non valido.' });
   }
 
-  if (!RESEND_API_KEY) {
-    console.error('RESEND_API_KEY is missing');
-    return json(500, { ok: false, error: 'Configurazione email mancante.' });
+  // Su Vercel process.env è la fonte più affidabile; astro:env come fallback
+  const apiKey = cleanEnv(process.env.RESEND_API_KEY) || cleanEnv(RESEND_API_KEY);
+  if (!apiKey) {
+    console.error('RESEND_API_KEY is missing on server');
+    return json(500, {
+      ok: false,
+      error: 'Configurazione email mancante. Imposta RESEND_API_KEY su Vercel.',
+    });
   }
 
-  const to = CONTACT_TO || 'info@mirianastudio.it';
-  const from = CONTACT_FROM || 'Miriana Studio <onboarding@resend.dev>';
+  const to =
+    cleanEnv(process.env.CONTACT_TO) ||
+    cleanEnv(CONTACT_TO) ||
+    'info@mirianastudio.it';
+  const from =
+    cleanEnv(process.env.CONTACT_FROM) ||
+    cleanEnv(CONTACT_FROM) ||
+    'Miriana Studio <onboarding@resend.dev>';
 
-  const resend = new Resend(RESEND_API_KEY);
+  try {
+    const resend = new Resend(apiKey);
+    const textLines = [
+      `Nome: ${name}`,
+      structure ? `Struttura / progetto: ${structure}` : null,
+      `Email: ${email}`,
+      phone ? `Telefono: ${phone}` : null,
+      '',
+      'Messaggio:',
+      project,
+    ].filter((line): line is string => line !== null);
 
-  const textLines = [
-    `Nome: ${name}`,
-    structure ? `Struttura / progetto: ${structure}` : null,
-    `Email: ${email}`,
-    phone ? `Telefono: ${phone}` : null,
-    '',
-    'Messaggio:',
-    project,
-  ].filter((line): line is string => line !== null);
-
-  const { error } = await resend.emails.send({
-    from,
-    to: [to],
-    replyTo: email,
-    subject: `Nuovo contatto — ${name}`,
-    text: textLines.join('\n'),
-    html: `
+    const { error } = await resend.emails.send({
+      from,
+      to: [to],
+      replyTo: email,
+      subject: `Nuovo contatto — ${name}`,
+      text: textLines.join('\n'),
+      html: `
       <p><strong>Nome:</strong> ${escapeHtml(name)}</p>
       ${structure ? `<p><strong>Struttura / progetto:</strong> ${escapeHtml(structure)}</p>` : ''}
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
@@ -94,14 +111,21 @@ export const POST: APIRoute = async ({ request }) => {
       <p><strong>Messaggio:</strong></p>
       <p>${escapeHtml(project).replace(/\n/g, '<br />')}</p>
     `,
-  });
+    });
 
-  if (error) {
-    console.error('Resend error:', error);
+    if (error) {
+      console.error('Resend error:', error);
+      return json(500, {
+        ok: false,
+        error: 'Invio non riuscito. Controlla dominio mittente e API key Resend.',
+      });
+    }
+
+    return json(200, { ok: true });
+  } catch (err) {
+    console.error('Contact API unexpected error:', err);
     return json(500, { ok: false, error: 'Invio non riuscito. Riprova più tardi.' });
   }
-
-  return json(200, { ok: true });
 };
 
 function escapeHtml(value: string): string {
