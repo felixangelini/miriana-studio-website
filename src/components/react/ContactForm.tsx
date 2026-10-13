@@ -135,12 +135,11 @@ export default function ContactForm() {
 
       <div className={fieldWrap}>
         <label className={labelClass} htmlFor="project">
-          Il progetto <span className="text-terracotta">*</span>
+          Il progetto
         </label>
         <textarea
           id="project"
           name="project"
-          required
           rows={5}
           placeholder="Descrivi la tua struttura, dove sei, cosa vuoi comunicare..."
           className={`${inputClass} resize-none leading-relaxed`}

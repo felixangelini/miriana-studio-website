@@ -12,7 +12,7 @@ import Footer from '../components/sections/Footer.astro';
 ---
 
 <BaseLayout>
-  <Nav client:load />
+  <Nav client:load currentPath={Astro.url.pathname} />
   <main>
     <Hero />
     <PuntoDiPartenza />

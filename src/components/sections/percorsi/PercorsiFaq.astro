@@ -1,0 +1,30 @@
+---
+import FaqList from '../../react/FaqList';
+import Reveal from '../../react/Reveal';
+---
+
+<section id="domande" class="section-pad scroll-mt-24 bg-cream py-24 md:py-32">
+  <div class="mx-auto grid max-w-site items-start gap-14 md:grid-cols-12 md:gap-16">
+    <div class="sticky top-16 z-20 bg-cream/95 py-4 backdrop-blur-sm md:top-24 md:col-span-4 md:self-start md:bg-transparent md:py-0 md:backdrop-blur-none">
+      <Reveal client:visible y={20}>
+        <p class="text-[10px] font-medium uppercase tracking-[2px] text-olive-soft">
+          Domande frequenti
+        </p>
+        <h2 class="mt-4 font-display text-[clamp(2.6rem,5vw,3.75rem)] leading-[0.95] text-terracotta">
+          Domande,<br />
+          risposte,<br />
+          <span class="font-script text-[clamp(3.2rem,6vw,5rem)] leading-none text-olive-soft">
+            branding
+          </span>
+        </h2>
+        <p class="mt-8 max-w-xs text-[13px] leading-relaxed text-taupe">
+          Le risposte alle domande più comuni sul branding, sui servizi e sul modo in cui lavoro.
+        </p>
+      </Reveal>
+    </div>
+
+    <div class="md:col-span-7 md:col-start-6">
+      <FaqList client:load />
+    </div>
+  </div>
+</section>

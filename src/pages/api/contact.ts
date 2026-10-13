@@ -58,7 +58,7 @@ export const POST: APIRoute = async ({ request }) => {
   const phone = asTrimmedString(body.phone, 40);
   const project = asTrimmedString(body.project, 4000);
 
-  if (!name || !email || !project) {
+  if (!name || !email) {
     return json(400, { ok: false, error: 'Compila i campi obbligatori.' });
   }
 
@@ -92,9 +92,9 @@ export const POST: APIRoute = async ({ request }) => {
       structure ? `Struttura / progetto: ${structure}` : null,
       `Email: ${email}`,
       phone ? `Telefono: ${phone}` : null,
-      '',
-      'Messaggio:',
-      project,
+      project ? '' : null,
+      project ? 'Messaggio:' : null,
+      project || null,
     ].filter((line): line is string => line !== null);
 
     const { error } = await resend.emails.send({
@@ -108,8 +108,11 @@ export const POST: APIRoute = async ({ request }) => {
       ${structure ? `<p><strong>Struttura / progetto:</strong> ${escapeHtml(structure)}</p>` : ''}
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       ${phone ? `<p><strong>Telefono:</strong> ${escapeHtml(phone)}</p>` : ''}
-      <p><strong>Messaggio:</strong></p>
-      <p>${escapeHtml(project).replace(/\n/g, '<br />')}</p>
+      ${
+        project
+          ? `<p><strong>Messaggio:</strong></p><p>${escapeHtml(project).replace(/\n/g, '<br />')}</p>`
+          : ''
+      }
     `,
     });
 

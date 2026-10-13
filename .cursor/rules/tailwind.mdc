@@ -14,7 +14,7 @@ Plugin: `@tailwindcss/vite` in `astro.config.mjs`. Do **not** add `tailwind.conf
 Custom colors live in `@theme` as `--color-*`. Allowed brand names:
 
 - `cream`, `cream-soft`, `cream-muted`
-- `terracotta`, `olive`, `taupe`, `ink`, `sand`
+- `terracotta`, `olive`, `olive-soft`, `taupe`, `ink`, `sand`, `parchment`
 
 **Never** define single-value `--color-*` keys that collide with Tailwind defaults: `stone`, `slate`, `gray`, `zinc`, `neutral`, `red`, `orange`, `amber`, `yellow`, `lime`, `green`, `emerald`, `teal`, `cyan`, `sky`, `blue`, `indigo`, `violet`, `purple`, `fuchsia`, `pink`, `rose`, `black`, `white`.
 

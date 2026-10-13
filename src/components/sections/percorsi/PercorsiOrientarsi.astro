@@ -1,0 +1,70 @@
+---
+import Reveal from '../../react/Reveal';
+
+const rows = [
+  {
+    index: '01',
+    text: 'Sto avviando la mia attività e voglio costruire e basi della mia identità.',
+    path: 'Brand Foundation',
+  },
+  {
+    index: '02',
+    text: 'Voglio definire la strategia e l’identità del mio brand per iniziare a comunicarlo con chiarezza.',
+    path: 'Brand Identity',
+  },
+  {
+    index: '03',
+    text: 'Voglio definire il mio brand e avere una guida nelle scelte creative e nella comunicazione, insieme al mio team e ai professionisti coinvolti.',
+    path: 'Brand Direction',
+  },
+];
+---
+
+<section class="section-pad bg-cream py-24 md:py-36">
+  <div class="mx-auto grid max-w-site gap-14 md:grid-cols-12 md:gap-16">
+    <Reveal client:visible className="md:col-span-4">
+      <p class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">
+        Come orientarsi
+      </p>
+      <h2 class="mt-4 font-display leading-[0.9] text-terracotta">
+        <span class="block font-script text-[clamp(3.5rem,7vw,6.5rem)] leading-none text-olive-soft">
+          da dove
+        </span>
+        <span class="block text-[clamp(3rem,6vw,4.5rem)]">partire?</span>
+      </h2>
+    </Reveal>
+
+    <div class="md:col-span-7 md:col-start-6">
+      <ul>
+        {
+          rows.map((row, i) => (
+            <li class="border-t border-ink/15">
+              <a
+                class="grid gap-4 py-7 sm:grid-cols-[2rem_1fr_auto] sm:items-start sm:gap-8"
+              >
+                <Reveal client:visible delay={i * 0.06} className="contents">
+                  <span class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">
+                    {row.index}
+                  </span>
+                  <span class="max-w-sm text-base leading-snug text-taupe">{row.text}</span>
+                  <span class="font-display text-lg italic text-terracotta sm:text-right">
+                    {row.path}
+                  </span>
+                </Reveal>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <Reveal client:visible className="flex justify-end pt-8">
+        <a
+          href="/contatti"
+          class="inline-flex items-center gap-3 border-b border-ink/30 pb-1 text-[10px] font-medium uppercase tracking-[2px] text-ink transition-opacity hover:opacity-70"
+        >
+          Parliamo del tuo progetto
+          <span aria-hidden="true">→</span>
+        </a>
+      </Reveal>
+    </div>
+  </div>
+</section>

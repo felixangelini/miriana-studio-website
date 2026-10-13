@@ -1,0 +1,91 @@
+---
+import Reveal from '../../react/Reveal';
+
+interface Props {
+  id: string;
+  index: string;
+  title: string;
+  italic: string;
+  lead: string;
+  paragraphs: string[];
+  result: string;
+  image: string;
+  imageAlt: string;
+  cta?: boolean;
+  tone?: 'cream' | 'sand';
+}
+
+const {
+  id,
+  index,
+  title,
+  italic,
+  lead,
+  paragraphs,
+  result,
+  image,
+  imageAlt,
+  cta = false,
+  tone = 'cream',
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={[
+    'section-pad scroll-mt-24 py-20 md:py-28',
+    tone === 'sand' ? 'bg-sand/20' : 'bg-cream',
+  ]}
+>
+  <div class="mx-auto grid max-w-site items-start gap-12 md:grid-cols-12 md:gap-8">
+    <Reveal client:visible className="md:col-span-2 md:pt-24">
+      <p class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">
+        Percorso / {index}
+      </p>
+    </Reveal>
+
+    <div class="flex flex-col gap-8 md:col-span-5">
+      <Reveal client:visible y={28}>
+        <h2 class="font-display text-[clamp(3.2rem,6vw,5rem)] leading-[0.9] text-terracotta">
+          {title}
+          <span class="block italic">{italic}</span>
+        </h2>
+        <p class="mt-5 font-display text-2xl italic leading-snug text-ink/80">{lead}</p>
+      </Reveal>
+
+      <Reveal client:visible delay={0.08} className="max-w-md space-y-4 text-base leading-relaxed text-taupe">
+        {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </Reveal>
+
+      <Reveal client:visible delay={0.12} className="max-w-md pt-2">
+        <p class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">Risultato</p>
+        <p class="mt-3 font-display text-xl leading-snug text-ink">{result}</p>
+      </Reveal>
+
+      {
+        cta && (
+          <Reveal client:visible delay={0.16} className="flex justify-end pt-4">
+            <a
+              href="/contatti"
+              class="inline-flex items-center gap-3 border-b border-ink/30 pb-1 text-[10px] font-medium uppercase tracking-[2px] text-ink transition-opacity hover:opacity-70"
+            >
+              Parliamo del percorso
+              <span aria-hidden="true">→</span>
+            </a>
+          </Reveal>
+        )
+      }
+    </div>
+
+    <Reveal client:visible delay={0.1} y={24} className="md:col-span-5 md:pt-16">
+      <div class="overflow-hidden bg-sand">
+        <img
+          src={image}
+          alt={imageAlt}
+          class="aspect-4/5 w-full object-cover md:aspect-5/4 lg:aspect-449/498"
+          loading="lazy"
+        />
+      </div>
+    </Reveal>
+  </div>
+</section>

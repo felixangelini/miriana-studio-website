@@ -5,6 +5,7 @@
 @import "@fontsource/bodoni-moda/700-italic.css";
 @import "@fontsource/montserrat/400.css";
 @import "@fontsource/montserrat/500.css";
+@import "@fontsource/montserrat/700-italic.css";
 
 @font-face {
   font-family: "Byron";
@@ -24,6 +25,8 @@
   --color-cream-muted: #d4d0c4;
   --color-terracotta: #7d3107;
   --color-olive: #6f6638;
+  --color-olive-soft: #948a4a;
+  --color-parchment: #e3dcc8;
   --color-taupe: #8a8070;
   --color-ink: #1c1d15;
   --color-sand: #c0baa6;

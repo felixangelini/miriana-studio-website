@@ -1,0 +1,90 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/react/Nav';
+import Footer from '../components/sections/Footer.astro';
+import IniziaConversazione from '../components/sections/IniziaConversazione.astro';
+import Reveal from '../components/react/Reveal';
+---
+
+<BaseLayout
+  title="Studio — Miriana Studio"
+  description="Miriana Studio progetta strategia e identità visiva per brand dell’hospitality. Il brand, oltre il logo."
+>
+  <Nav client:load currentPath={Astro.url.pathname} />
+  <main class="bg-cream-soft">
+    <article class="section-pad pb-24 pt-28 md:pb-32 md:pt-36">
+      <div class="mx-auto max-w-site">
+        <Reveal client:visible onMount y={16} duration={0.8}>
+          <div class="flex items-center justify-between gap-6 border-t border-ink/20 pt-4">
+            <p class="text-[10px] font-medium uppercase tracking-[2px] text-olive-soft">
+              Studio / Miriana Studio
+            </p>
+            <p class="text-right text-[10px] font-medium uppercase tracking-[2px] text-ink/30">
+              Brand design / Hospitality
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal client:visible onMount delay={0.12} y={32} className="mt-16 md:mt-24 md:pl-[8%]">
+          <h1 class="font-display text-[clamp(3.4rem,8vw,6.25rem)] leading-[0.92] text-terracotta">
+            Il brand,
+            <span class="block italic text-olive-soft">oltre il logo.</span>
+          </h1>
+        </Reveal>
+
+        <div class="mt-20 grid items-start gap-14 md:mt-28 md:grid-cols-12 md:gap-x-12">
+          <Reveal client:visible className="md:col-span-5 md:col-start-7">
+            <p class="font-display text-[clamp(1.65rem,2.4vw,2.25rem)] leading-snug text-terracotta">
+              Credo che un’identità visiva efficace nasca dalla capacità di comprendere ciò che
+              rende un brand unico e tradurlo in un linguaggio riconoscibile.
+            </p>
+          </Reveal>
+
+          <Reveal client:visible delay={0.08} className="md:col-span-4 md:col-start-2 md:row-start-2">
+            <figure>
+              <div class="relative aspect-410/513 overflow-hidden bg-sand">
+                <img
+                  src="/images/studio-ritratto.png"
+                  alt="Ritratto in bianco e nero di Miriana al lavoro"
+                  class="absolute inset-x-0 top-0 h-[128%] w-full object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+            </figure>
+          </Reveal>
+
+          <Reveal client:visible delay={0.12} className="md:col-span-5 md:col-start-7 md:row-start-2">
+            <div class="border-t border-ink/20 pt-9">
+              <div class="grid grid-cols-[2rem_1fr] gap-x-5 text-base leading-relaxed text-taupe">
+                <p class="pt-1 text-[10px] font-medium uppercase tracking-[2px] text-olive-soft">
+                  01
+                </p>
+                <div class="space-y-7">
+                  <p>
+                    Il mio approccio si è sviluppato tra{' '}
+                    <em class="font-bold italic">design, comunicazione ed esperienze</em> che si
+                    evolvono sia nel digitale che nello spazio fisico. Questo mi ha portata a
+                    guardare il brand oltre il logo, considerando come{' '}
+                    <em class="font-bold italic">ogni elemento del sistema comunicativo</em>{' '}
+                    contribuisca a raccontarlo: dalle immagini e dai materiali alla comunicazione
+                    online, fino all’esperienza vissuta in struttura.
+                  </p>
+                  <p>
+                    Oggi mi occupo di strategia e identità visiva, aiutando i brand a{' '}
+                    <em class="font-bold italic">comunicare il proprio valore</em> attraverso
+                    un’immagine coerente e riconoscibile, in ogni punto di contatto con il pubblico.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        <div class="mt-24 border-t border-sand/50 pt-12 md:mt-32 md:pt-16">
+          <IniziaConversazione />
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>

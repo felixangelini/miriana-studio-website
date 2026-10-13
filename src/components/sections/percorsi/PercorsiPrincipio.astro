@@ -1,0 +1,69 @@
+---
+import Reveal from '../../react/Reveal';
+
+const paths = [
+  { href: '#foundation', index: '01', label: 'Foundation' },
+  { href: '#identity', index: '02', label: 'Identity' },
+  { href: '#direction', index: '03', label: 'Direction' },
+];
+---
+
+<section id="principio" class="section-pad scroll-mt-24 bg-cream-soft py-24 md:py-36">
+  <div class="mx-auto max-w-site">
+    <div class="grid gap-10 md:grid-cols-12 md:gap-8">
+      <Reveal client:visible className="md:col-span-2">
+        <p class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">
+          Il principio
+        </p>
+      </Reveal>
+      <Reveal client:visible delay={0.08} className="md:col-span-7">
+        <h2 class="font-display text-[clamp(2rem,4vw,3.15rem)] leading-[1.15] text-terracotta">
+          Il punto di partenza cambia.
+          <span class="mt-2 block font-display text-[clamp(2.4rem,4.6vw,4.35rem)] italic leading-[1.05] text-olive-soft">
+            La direzione resta chiara.
+          </span>
+        </h2>
+      </Reveal>
+      <Reveal client:visible delay={0.14} className="md:col-span-3 md:pt-16">
+        <p class="max-w-xs text-base leading-relaxed text-taupe">
+          Nuova struttura, logo da creare o identità visiva da rivedere: il lavoro si concentra su
+          ciò che serve davvero al brand.
+        </p>
+      </Reveal>
+    </div>
+
+    <div class="mt-16 grid items-end gap-12 md:mt-24 md:grid-cols-12 md:gap-8">
+      <Reveal client:visible className="md:col-span-8">
+        <figure>
+          <div class="overflow-hidden bg-sand">
+            <img
+              src="/images/percorsi-principio.png"
+              alt="Pietra e intonaco attraversati da un’ombra diagonale"
+              class="aspect-874/383 w-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        </figure>
+      </Reveal>
+
+      <Reveal client:visible delay={0.1} className="md:col-span-4">
+        <p class="mb-6 text-right text-[13px] text-terracotta">I PERCORSI</p>
+        <nav aria-label="Indice dei percorsi" class="border-t border-ink/20">
+          {
+            paths.map((path) => (
+              <a
+                href={path.href}
+                class="flex items-center justify-between border-b border-ink/15 py-4 transition-colors hover:text-terracotta"
+              >
+                <span class="text-[10px] font-medium uppercase tracking-[2px] text-ink/45">
+                  {path.index}
+                </span>
+                <span class="font-display text-lg text-ink">{path.label}</span>
+              </a>
+            ))
+          }
+        </nav>
+      </Reveal>
+    </div>
+  </div>
+</section>

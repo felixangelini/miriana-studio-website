@@ -2,13 +2,16 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const links = [
-  { href: '/#studio', label: 'Studio' },
-  { href: '/#identita', label: 'Identità' },
+  { href: '/studio', label: 'Studio' },
+  { href: '/percorsi', label: 'Percorsi' },
   { href: '/contatti', label: 'Contatti' },
 ];
 
-export default function Nav() {
+export default function Nav({ currentPath = '' }: { currentPath?: string }) {
   const [open, setOpen] = useState(false);
+
+  const isCurrent = (href: string) =>
+    currentPath === href || currentPath === `${href}/`;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-sand/40 bg-cream/96 backdrop-blur-sm">
@@ -25,7 +28,9 @@ export default function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="text-[10px] font-medium uppercase tracking-[2px] text-taupe transition-colors hover:text-terracotta"
+              className={`text-[10px] font-medium uppercase tracking-[2px] transition-colors hover:text-terracotta ${
+                isCurrent(link.href) ? 'text-terracotta' : 'text-taupe'
+              }`}
             >
               {link.label}
             </a>
@@ -65,7 +70,9 @@ export default function Nav() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="font-display text-2xl text-terracotta"
+                    className={`font-display text-2xl ${
+                      isCurrent(link.href) ? 'text-terracotta' : 'text-ink'
+                    }`}
                     onClick={() => setOpen(false)}
                   >
                     {link.label}

@@ -8,9 +8,9 @@ import Footer from '../components/sections/Footer.astro';
 
 <BaseLayout
   title="Contatti — Miriana Studio"
-  description="Scrivi a Miriana Studio. La prima conversazione è gratuita: raccontami il tuo progetto hospitality."
+  description="Raccontami il tuo progetto: dove sei, cosa fai, dove vuoi arrivare e come vuoi essere percepito."
 >
-  <Nav client:load />
+  <Nav client:load currentPath={Astro.url.pathname} />
   <main>
     <section class="section-pad bg-cream pb-20 pt-32 md:pb-24 md:pt-40">
       <div class="mx-auto grid max-w-site gap-6 lg:grid-cols-12 lg:items-end lg:gap-8">
@@ -30,7 +30,8 @@ import Footer from '../components/sections/Footer.astro';
           <h1
             class="font-display text-[clamp(2.5rem,6vw,4.75rem)] leading-[1.05] text-terracotta"
           >
-            Parliamo del tuo<br class="hidden sm:block" /> progetto.
+            Parliamo del<br class="hidden sm:block" />{' '}
+            <em class="font-bold italic">tuo progetto.</em>
           </h1>
         </Reveal>
       </div>
@@ -43,8 +44,8 @@ import Footer from '../components/sections/Footer.astro';
       <div class="mx-auto grid max-w-site gap-16 lg:grid-cols-12 lg:gap-24">
         <Reveal client:visible delay={0.05} className="flex flex-col gap-10 lg:col-span-4">
           <p class="max-w-prose-md text-sm leading-relaxed text-taupe">
-            La prima conversazione è gratuita. Raccontami il tuo progetto: dove sei, cosa
-            fai, dove vuoi arrivare.
+            Raccontami il tuo progetto: dove sei, cosa fai, dove vuoi arrivare e come vuoi
+            essere percepito.
           </p>
 
           <div class="h-px w-full bg-sand/60"></div>
@@ -59,6 +60,17 @@ import Footer from '../components/sections/Footer.astro';
                 class="mt-2 block text-sm text-ink transition-opacity hover:opacity-70"
               >
                 info@mirianastudio.it
+              </a>
+            </div>
+            <div>
+              <p class="text-[10px] font-medium uppercase tracking-[2px] text-terracotta">
+                Tel
+              </p>
+              <a
+                href="tel:+393200650113"
+                class="mt-2 block text-sm text-ink transition-opacity hover:opacity-70"
+              >
+                +39 320 0650 113
               </a>
             </div>
             <div>
