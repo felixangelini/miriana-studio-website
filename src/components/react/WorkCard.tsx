@@ -4,7 +4,6 @@ import { motion, useInView, useReducedMotion } from 'motion/react';
 type WorkCardProps = {
   src: string;
   alt: string;
-  label: string;
   className?: string;
   /** Horizontal offset: positive = from right, negative = from left */
   x?: number;
@@ -18,7 +17,6 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function WorkCard({
   src,
   alt,
-  label,
   className = '',
   x = 0,
   y = 36,
@@ -59,9 +57,6 @@ export default function WorkCard({
         className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
         loading="lazy"
       />
-      <p className="absolute bottom-4 left-4 text-[10px] font-medium uppercase tracking-[2px] text-cream/70">
-        {label}
-      </p>
     </motion.article>
   );
 }

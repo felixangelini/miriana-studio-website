@@ -9,8 +9,6 @@ interface Props {
   lead: string;
   paragraphs: string[];
   result: string;
-  image: string;
-  imageAlt: string;
   cta?: boolean;
   tone?: 'cream' | 'sand';
 }
@@ -23,8 +21,6 @@ const {
   lead,
   paragraphs,
   result,
-  image,
-  imageAlt,
   cta = false,
   tone = 'cream',
 } = Astro.props;
@@ -77,15 +73,13 @@ const {
       }
     </div>
 
-    <Reveal client:visible delay={0.1} y={24} className="md:col-span-5 md:pt-16">
-      <div class="overflow-hidden bg-sand">
-        <img
-          src={image}
-          alt={imageAlt}
-          class="aspect-4/5 w-full object-cover md:aspect-5/4 lg:aspect-449/498"
-          loading="lazy"
-        />
-      </div>
+    <Reveal client:visible delay={0.1} className="md:col-span-5 md:flex md:items-start md:justify-end md:pt-10">
+      <p
+        class="font-display text-[clamp(8.5rem,18vw,14rem)] leading-none tracking-[-0.04em] text-olive-soft"
+        aria-hidden="true"
+      >
+        {index}
+      </p>
     </Reveal>
   </div>
 </section>
